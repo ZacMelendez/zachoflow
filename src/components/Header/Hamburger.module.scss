@@ -1,0 +1,55 @@
+.hamburger {
+    width: 35px;
+    height: 22px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    .burger {
+        width: 35px;
+        height: 4px;
+        border-radius: 10px;
+        background-color: var(--color-text-primary);
+        margin-bottom: 5px;
+        margin-left: auto;
+        transform-origin: 1px;
+        transition: all 0.2s linear;
+
+        &:nth-child(2) {
+            width: 25px;
+        }
+
+        &:last-child {
+            width: 30px;
+        }
+    }
+
+    .burger1 {
+        transform: rotate(0deg);
+    }
+
+    .b1open {
+        transform: rotate(45deg);
+        width: 28px !important;
+    }
+
+    .burger2 {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .b2open {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    .burger3 {
+        transform: rotate(0);
+    }
+
+    .b3open {
+        transform: rotate(-45deg);
+        width: 28px !important;
+    }
+}

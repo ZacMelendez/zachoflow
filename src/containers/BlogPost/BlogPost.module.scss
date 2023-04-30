@@ -1,0 +1,120 @@
+@import "../../../styles/breakpoints.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 2.5% 5%;
+
+    .postHead {
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+        justify-content: space-between;
+
+        * {
+            color: #ee8e41;
+        }
+
+        .back {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+
+            svg {
+                fill: #ee8e41;
+            }
+        }
+    }
+    .head {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .title {
+            font-weight: 600;
+            font-size: 42px;
+            text-align: center;
+            @include sm-max {
+                font-size: 26px;
+            }
+        }
+        .date {
+            font-weight: 300;
+        }
+    }
+
+    .blogPost {
+        display: flex;
+        flex-direction: row;
+
+        .markdown {
+            .codeLine {
+                background-color: white;
+                color: skyblue;
+                padding: 3px 5px;
+                border-radius: 5px;
+                font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
+                    monospace !important;
+            }
+
+            .codeDiv {
+                position: relative;
+
+                .button {
+                    position: absolute;
+                    border-radius: 8px;
+                    right: 5px;
+                    top: 5px;
+                    background-color: var(--color-bg-primary);
+                    opacity: 0.75;
+
+                    @include lg-max {
+                        display: none;
+                    }
+                }
+                .codeBlock {
+                    border-radius: 10px;
+                    overflow: scroll;
+                    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.2);
+                }
+            }
+
+            // *:not(span) {
+            //     // font-family: "Poppins";
+            // }
+
+            *:not(span, a, code) {
+                color: var(--color-text-primary);
+            }
+
+            * a {
+                color: var(--color-text-secondary);
+            }
+
+            span {
+                font-size: 16px;
+                line-height: 1.5;
+                font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
+                    monospace;
+            }
+
+            image {
+                max-height: 200px;
+            }
+
+            @include sm-max {
+                h1 {
+                    font-size: 22px;
+                }
+                h2 {
+                    font-size: 19px;
+                }
+                p {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}

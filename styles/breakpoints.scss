@@ -1,0 +1,78 @@
+// Breakpoint Mixins
+
+// Small tablets and large smartphones (landscape view)
+$screen-sm: 576px;
+
+// Small tablets (portrait view)
+$screen-md: 768px;
+
+// Tablets and small desktops
+$screen-lg: 992px;
+
+// Large tablets and desktops
+$screen-xl: 1200px;
+
+// Small devices
+@mixin sm-min {
+    @media (min-width: #{$screen-sm}) {
+        @content;
+    }
+}
+
+@mixin sm-max {
+    @media (max-width: #{$screen-sm}) {
+        @content;
+    }
+}
+
+// Medium devices
+@mixin md-min {
+    @media (min-width: #{$screen-md}) {
+        @content;
+    }
+}
+
+@mixin md-max {
+    @media (max-width: #{$screen-md}) {
+        @content;
+    }
+}
+
+// Large devices
+@mixin lg-min {
+    @media (min-width: #{$screen-lg}) {
+        @content;
+    }
+}
+
+@mixin lg-max {
+    @media (max-width: #{$screen-lg}) {
+        @content;
+    }
+}
+
+// Extra large devices
+@mixin xl-min {
+    @media (min-width: #{$screen-xl}) {
+        @content;
+    }
+}
+
+@mixin xl-max {
+    @media (max-width: #{$screen-xl}) {
+        @content;
+    }
+}
+
+// Custom devices
+@mixin vp-min($screen) {
+    @media (min-width: ($screen + "px")) {
+        @content;
+    }
+}
+
+@mixin vp-max($screen) {
+    @media (max-width: ($screen + "px")) {
+        @content;
+    }
+}

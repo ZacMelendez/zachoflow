@@ -1,0 +1,52 @@
+@import "./breakpoints.scss";
+
+.body {
+    width: 100%;
+    height: 100%;
+
+    padding: 2.5% 50px;
+    .postlist {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+        padding: 0;
+
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    // padding: 5% 10%;
+    @include sm-max {
+        padding: 5% 5%;
+    }
+
+    .image {
+        @include sm-max {
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    .paragraphs {
+        display: flex;
+        flex-direction: column;
+        max-width: 800px;
+
+        gap: 18px;
+        font-size: 18px;
+    }
+}

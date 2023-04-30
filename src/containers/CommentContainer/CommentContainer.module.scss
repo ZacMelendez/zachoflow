@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .comments {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .signIn {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .message {
+            font-weight: 500;
+        }
+    }
+}

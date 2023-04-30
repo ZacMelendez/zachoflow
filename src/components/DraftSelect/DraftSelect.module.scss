@@ -1,0 +1,28 @@
+.modal {
+  .draft {
+    background-color: var(--color-text-primary);
+
+    border-radius: 15px;
+    padding: 10px 25px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .title,
+    .date {
+      color: var(--color-bg-primary);
+    }
+
+    .date {
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: 10px;
+    }
+  }
+}

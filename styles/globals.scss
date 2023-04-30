@@ -1,0 +1,31 @@
+header {
+    width: auto;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10;
+
+    // @include sm-max {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: space-between;
+    //     padding: 0;
+    // }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mantine-Text-root {
+    font-family: var(--poppins);
+}
+
+.mantine-Header-root {
+    padding: 0 25px;
+}

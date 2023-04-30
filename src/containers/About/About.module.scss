@@ -1,0 +1,26 @@
+@import "../../../styles/breakpoints.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+
+    padding: 5% 10%;
+    @include sm-max {
+        padding: 5% 5%;
+    }
+
+    .image {
+        @include sm-max {
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    .paragraphs {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+}
