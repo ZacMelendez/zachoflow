@@ -1,5 +1,4 @@
-import { ActionIcon, Box, Card, Text } from "@mantine/core";
-import { IconArrowNarrowRight } from "@tabler/icons-react";
+import { Box, Card, Text } from "@mantine/core";
 import moment from "moment";
 import Link from "next/link";
 import React, { ReactNode, useContext } from "react";

@@ -28,6 +28,7 @@
         }
     }
     .head {
+        padding-top: 25px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -52,7 +53,7 @@
         .markdown {
             .codeLine {
                 background-color: white;
-                color: skyblue;
+                color: rgb(114, 143, 203);
                 padding: 3px 5px;
                 border-radius: 5px;
                 font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
@@ -67,8 +68,8 @@
                     border-radius: 8px;
                     right: 5px;
                     top: 5px;
-                    background-color: var(--color-bg-primary);
                     opacity: 0.75;
+                    background-color: #ee8e41;
 
                     @include lg-max {
                         display: none;
@@ -81,21 +82,13 @@
                 }
             }
 
-            // *:not(span) {
-            //     // font-family: "Poppins";
-            // }
-
-            *:not(span, a, code) {
-                color: var(--color-text-primary);
-            }
-
             * a {
-                color: var(--color-text-secondary);
+                color: #ee8e41;
             }
 
             span {
                 font-size: 16px;
-                line-height: 1.5;
+                line-height: 1.75;
                 font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
                     monospace;
             }

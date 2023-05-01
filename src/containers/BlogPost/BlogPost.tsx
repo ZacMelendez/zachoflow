@@ -147,13 +147,18 @@ export default function BlogPost({ blog }: { blog: BlogEntry }) {
                                             scrollMarginTop: "59px",
                                             paddingTop: "15px",
                                         }}
+                                        className={styles.blogH2}
                                     >
                                         {children}
                                     </Title>
                                 );
                             },
                             p({ node, className, children, ...props }) {
-                                return <Text>{children}</Text>;
+                                return (
+                                    <Text className={styles.blogP}>
+                                        {children}
+                                    </Text>
+                                );
                             },
                             img({ node, className, children, ...props }) {
                                 return (

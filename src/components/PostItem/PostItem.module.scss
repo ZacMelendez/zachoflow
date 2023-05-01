@@ -1,3 +1,5 @@
+$loading-grey: #4b4b4b;
+
 .link {
     display: flex;
     flex-direction: row;
@@ -65,4 +67,116 @@
 
     align-items: center;
     justify-content: space-between;
+}
+
+.loader {
+    position: relative;
+
+    height: 310px;
+    width: 405px;
+
+    border: 1px solid #c1c2c5;
+    background-color: #25262b;
+
+    padding: 30px 20px 30px 45px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &::before {
+        content: "";
+
+        top: 0;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        width: 8px;
+
+        background: #c1c2c5;
+
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+
+    .icon,
+    .date {
+        border-radius: 10px;
+
+        background-color: $loading-grey;
+        background: linear-gradient(
+                100deg,
+                rgba(255, 255, 255, 0) 40%,
+                #c1c2c5a9 50%,
+                rgba(255, 255, 255, 0) 60%
+            )
+            $loading-grey;
+        background-size: 200% 100%;
+        background-position-x: 180%;
+        animation: 1s loading ease-in-out infinite;
+    }
+
+    .title,
+    .description {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+    }
+
+    .title {
+        * {
+            width: 80%;
+            height: 20px;
+        }
+
+        & :last-child {
+            width: 65%;
+        }
+    }
+    .description {
+        * {
+            width: 90%;
+            height: 16px;
+        }
+
+        & :last-child {
+            width: 65%;
+        }
+    }
+
+    .title,
+    .description {
+        * {
+            border-radius: 10px;
+
+            background-color: $loading-grey;
+            background: linear-gradient(
+                    100deg,
+                    rgba(255, 255, 255, 0) 40%,
+                    #c1c2c5a9 50%,
+                    rgba(255, 255, 255, 0) 60%
+                )
+                $loading-grey;
+            background-size: 200% 100%;
+            background-position-x: 180%;
+            animation: 1s loading ease-in-out infinite;
+        }
+    }
+
+    .date {
+        width: 40%;
+        height: 16px;
+    }
+}
+
+@keyframes loading {
+    to {
+        background-position-x: -20%;
+    }
 }

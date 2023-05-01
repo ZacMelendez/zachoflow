@@ -8,12 +8,19 @@ import {
     TableOfContents,
 } from "../src/components";
 import { SessionProvider } from "next-auth/react";
-import { Poppins } from "next/font/google";
+import { Poppins, Montserrat } from "next/font/google";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const poppins = Poppins({
     variable: "--poppins",
+    weight: ["400", "500", "700"],
+    subsets: ["latin"],
+    display: "swap",
+});
+
+const montserrat = Montserrat({
+    variable: "--montserrat",
     weight: ["400", "500", "700"],
     subsets: ["latin"],
     display: "swap",
@@ -37,7 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 >
                     <AppShell
                         padding="md"
-                        className={poppins.variable}
+                        className={`${poppins.variable} ${montserrat.variable}`}
                         header={
                             <Header
                                 style={{

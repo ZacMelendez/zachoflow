@@ -6,20 +6,7 @@ import { BlogEntry } from "../../src/types";
 import styles from "../../styles/Home.module.scss";
 import { Box } from "@mantine/core";
 
-export default function Home({
-    blog,
-}: // comments,
-{
-    blog: BlogEntry;
-    // comments?: CommentEntry[];
-}) {
-    // const { setComments } = useContext(CommentsContext);
-
-    // useEffect(() => {
-    //     if (!comments) return;
-    //     setComments(comments);
-    // }, []);
-
+export default function Home({ blog }: { blog: BlogEntry }) {
     return (
         <>
             <NextSeo
@@ -40,8 +27,6 @@ export default function Home({
             />
             <Box className={styles.container}>
                 <BlogPost blog={blog} />
-                {/* <BlogPost blog={blog} /> */}
-                {/* <CommentContainer blog={blog} /> */}
             </Box>
         </>
     );
