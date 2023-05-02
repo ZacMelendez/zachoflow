@@ -5,10 +5,12 @@ import { getPost } from "../../src/helpers/PostsDatabase";
 import { BlogEntry } from "../../src/types";
 import styles from "../../styles/Home.module.scss";
 import { Box } from "@mantine/core";
+import { MobileHeader } from "../../src/components";
 
 export default function Home({ blog }: { blog: BlogEntry }) {
     return (
         <>
+            <MobileHeader />
             <NextSeo
                 title={`${blog.title}`}
                 description={`${blog.description}`}

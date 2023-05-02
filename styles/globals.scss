@@ -1,3 +1,5 @@
+@import "./breakpoints.scss";
+
 header {
     width: auto;
     height: auto;
@@ -28,4 +30,8 @@ header {
 
 .mantine-Header-root {
     padding: 0 25px;
+
+    @include sm-max {
+        padding: 0;
+    }
 }

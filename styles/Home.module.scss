@@ -5,6 +5,11 @@
     height: 100%;
 
     padding: 2.5% 50px;
+
+    @include sm-max {
+        padding: 2.5% 15px;
+    }
+
     .postlist {
         display: flex;
         flex-direction: row;

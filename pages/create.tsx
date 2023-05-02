@@ -1,4 +1,4 @@
-import { DraftSelect } from "../src/components";
+import { DraftSelect, MobileHeader } from "../src/components";
 import React, { useContext, useEffect } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
@@ -7,10 +7,13 @@ import { getPosts } from "../src/helpers/PostsDatabase";
 import { BlogEntry } from "../src/types";
 import { getSession, useSession } from "next-auth/react";
 import PostsContext from "../src/context/PostsContext";
+import { Drawer } from "@mantine/core";
+import MobileContext from "../src/context/MobileContext";
 
 export default function CreatePage({ data }: { data: BlogEntry[] }) {
     const { data: session } = useSession();
     const { drafts, setDrafts, setPosts } = useContext(PostsContext);
+    const { menuOpened, setMenuOpened } = useContext(MobileContext);
 
     useEffect(() => {
         setDrafts(data.filter((blog) => blog.isDraft));
@@ -34,6 +37,7 @@ export default function CreatePage({ data }: { data: BlogEntry[] }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
+                <MobileHeader />
                 <div className={styles.body}>
                     {session?.user?.email === "zacmelendez@gmail.com" && (
                         <>

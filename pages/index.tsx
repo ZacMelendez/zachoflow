@@ -5,10 +5,13 @@ import React from "react";
 import styles from "../styles/Home.module.scss";
 import { Box, Title, Text } from "@mantine/core";
 import Image from "next/image";
+import { MobileHeader } from "../src/components";
 
 export default function Home() {
     return (
         <>
+            <MobileHeader />
+
             <NextSeo
                 title="zachOverflow - Dev Blog"
                 description="Welcome to my Dev Blog, where I am looking to document my learnings along the way to becoming a Cloud/IoT Engineer!"

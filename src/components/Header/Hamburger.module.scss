@@ -6,11 +6,13 @@
         cursor: pointer;
     }
 
+    z-index: 1000;
+
     .burger {
         width: 35px;
         height: 4px;
         border-radius: 10px;
-        background-color: var(--color-text-primary);
+        background-color: #c1c2c5;
         margin-bottom: 5px;
         margin-left: auto;
         transform-origin: 1px;

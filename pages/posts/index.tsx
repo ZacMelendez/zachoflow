@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import PostsContext from "../../src/context/PostsContext";
 import { BlogEntry } from "../../src/types";
 import styles from "../../styles/Home.module.scss";
-import { PostItem, PostItemLoader } from "../../src/components";
+import { MobileHeader, PostItem, PostItemLoader } from "../../src/components";
 
 export default function PostsPage() {
     const { posts, setPosts } = useContext(PostsContext);
@@ -29,6 +29,7 @@ export default function PostsPage() {
 
     return (
         <>
+            <MobileHeader />
             <Head>
                 <title>zachOverflow - Dev Blog</title>
                 <meta

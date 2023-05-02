@@ -1,13 +1,13 @@
 import Link from "next/link";
 import styles from "./Header.module.scss";
 // import classnames from "classnames";
-import { ActionIcon, Box, Text } from "@mantine/core";
+import { ActionIcon, Box, Text, Header } from "@mantine/core";
 import ZachOverflow from "../../icons/ZachOverflow";
 import React, { useContext, useEffect, useState } from "react";
 import Hamburger from "./Hamburger";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-export default function Header() {
+export default function NavHeader() {
     const { data: session } = useSession();
     const [menuOpen, setMenuOpen] = useState(false);
     const [screenSize, setScreenSize] = useState<number>(1200);
@@ -76,42 +76,6 @@ export default function Header() {
                         </Box>
                         <Hamburger />
                     </Box>
-                    <ul
-                    // className={classnames(
-                    //     styles.nav,
-                    //     menuOpen && styles.open
-                    // )}
-                    >
-                        <li>
-                            <Link
-                                onClick={() => setMenuOpen(!menuOpen)}
-                                className={styles.navLink}
-                                href="/"
-                            >
-                                About
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                onClick={() => setMenuOpen(!menuOpen)}
-                                className={styles.navLink}
-                                href="/posts"
-                            >
-                                Posts
-                            </Link>
-                        </li>
-                        {session?.user?.email === "zacmelendez@gmail.com" && (
-                            <li>
-                                <Link
-                                    onClick={() => setMenuOpen(!menuOpen)}
-                                    className={styles.navLink}
-                                    href="/create"
-                                >
-                                    Create
-                                </Link>
-                            </li>
-                        )}
-                    </ul>
                 </>
             )}
         </>

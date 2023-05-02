@@ -6,6 +6,10 @@
     width: 100%;
     padding: 2.5% 5%;
 
+    @include sm-max {
+        padding: 0;
+    }
+
     .postHead {
         display: flex;
         flex-direction: row;

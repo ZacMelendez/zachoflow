@@ -1,6 +1,12 @@
 import "../styles/globals.scss";
 import type { AppProps } from "next/app";
-import { AppShell, Aside, Header, MantineProvider } from "@mantine/core";
+import {
+    AppShell,
+    Aside,
+    Header,
+    MantineProvider,
+    MediaQuery,
+} from "@mantine/core";
 import PostsContextProvider from "../src/providers/PostsContextProvider";
 import {
     NavHeader,
@@ -12,6 +18,7 @@ import { Poppins, Montserrat } from "next/font/google";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Notifications } from "@mantine/notifications";
+import MobileContextProvider from "../src/providers/MobileContextProvider";
 
 const poppins = Poppins({
     variable: "--poppins",
@@ -37,43 +44,50 @@ export default function App({ Component, pageProps }: AppProps) {
 
     return (
         <SessionProvider>
-            <PostsContextProvider>
-                <MantineProvider
-                    withGlobalStyles
-                    withNormalizeCSS
-                    theme={{ colorScheme: "dark" }}
-                >
-                    <AppShell
-                        padding="md"
-                        className={`${poppins.variable} ${montserrat.variable}`}
-                        header={
-                            <Header
-                                style={{
-                                    display: "flex",
-                                }}
-                                height={60}
-                            >
-                                <NavHeader />
-                            </Header>
-                        }
-                        aside={
-                            tocShown ? (
-                                <Aside
-                                    p="md"
-                                    hiddenBreakpoint="sm"
-                                    width={{ sm: 200, lg: 300 }}
-                                >
-                                    <TableOfContents />
-                                </Aside>
-                            ) : undefined
-                        }
+            <MobileContextProvider>
+                <PostsContextProvider>
+                    <MantineProvider
+                        withGlobalStyles
+                        withNormalizeCSS
+                        theme={{ colorScheme: "dark" }}
                     >
-                        <RouterTransition />
-                        <Component {...pageProps} />
-                        <Notifications />
-                    </AppShell>
-                </MantineProvider>
-            </PostsContextProvider>
+                        <AppShell
+                            padding="md"
+                            className={`${poppins.variable} ${montserrat.variable}`}
+                            header={
+                                <Header
+                                    style={{
+                                        display: "flex",
+                                    }}
+                                    height={60}
+                                >
+                                    <NavHeader />
+                                </Header>
+                            }
+                            aside={
+                                tocShown ? (
+                                    <MediaQuery
+                                        smallerThan="md"
+                                        styles={{ display: "none" }}
+                                    >
+                                        <Aside
+                                            p="md"
+                                            hiddenBreakpoint="md"
+                                            width={{ md: 300, lg: 300 }}
+                                        >
+                                            <TableOfContents />
+                                        </Aside>
+                                    </MediaQuery>
+                                ) : undefined
+                            }
+                        >
+                            <RouterTransition />
+                            <Component {...pageProps} />
+                            <Notifications />
+                        </AppShell>
+                    </MantineProvider>
+                </PostsContextProvider>
+            </MobileContextProvider>
         </SessionProvider>
     );
 }
