@@ -202,15 +202,10 @@ export default function CreateBlog() {
         };
 
         try {
-            await fetch(
-                process.env.NODE_ENV == "production"
-                    ? "https://crgdo5agb5.execute-api.us-east-1.amazonaws.com/Prod/posts"
-                    : "http://localhost:3001/posts",
-                {
-                    method: `${update ? "PUT" : "POST"}`,
-                    body: JSON.stringify(post),
-                }
-            );
+            await fetch("/api/posts", {
+                method: `${update ? "POST" : "PUT"}`,
+                body: JSON.stringify(post),
+            });
             isDraft ? addDraft(post) : !update && addPost(post);
 
             notifications.show({

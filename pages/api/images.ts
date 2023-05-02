@@ -15,9 +15,6 @@ export default async function handler(
         apiVersion: "2006-03-01",
         accessKeyId: process.env.AWS_KEY,
         secretAccessKey: process.env.AWS_SECRET,
-        ...(process.env.NODE_ENV !== "production" && {
-            endpoint: "http://localhost:4566",
-        }),
     });
     try {
         if (req.method !== "GET") {

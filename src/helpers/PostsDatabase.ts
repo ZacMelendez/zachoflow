@@ -10,23 +10,11 @@ import {
 } from "@aws-sdk/client-dynamodb";
 import moment from "moment";
 import fetch from "node-fetch";
-
-const itemParser = (object: any) => {
-    let obj: any = {};
-    for (const property in object) {
-        obj = {
-            ...obj,
-            [property]: object[property][Object.keys(object[property])[0]],
-        };
-    }
-    return {
-        ...obj,
-        ...(obj["images"] && { images: JSON.parse(obj["images"]) }),
-    };
-};
+import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 
 const imageCreator = async ({ title, id }: { title: string; id: string }) => {
     await fetch(
+        // "/api/posts",
         "https://km9zsdl2nk.execute-api.us-east-1.amazonaws.com/Prod/api",
         {
             method: "POST",
@@ -52,12 +40,10 @@ export const getPost = async (url: string) => {
     const { Item } = await client.send(
         new GetItemCommand({
             TableName: process.env.POST_TABLE,
-            Key: {
-                url: { S: url },
-            },
+            Key: marshall({ url: url }),
         })
     );
-    return itemParser(Item);
+    return Item ? unmarshall(Item) : null;
 };
 
 export const getPosts = async () => {
@@ -66,16 +52,14 @@ export const getPosts = async () => {
             TableName: process.env.POST_TABLE,
         })
     );
-    return Items?.Items?.map((item: any) => itemParser(item)) as BlogEntry[];
+    return Items?.Items?.map((item: any) => unmarshall(item)) as BlogEntry[];
 };
 
 export const updateComments = async (url: string, comments: string) => {
     const Item = await client.send(
         new UpdateItemCommand({
             TableName: process.env.POST_TABLE,
-            Key: {
-                url: { S: url },
-            },
+            Key: marshall({ url: url }),
             UpdateExpression: "set comments = :s",
             ExpressionAttributeValues: {
                 ":s": { S: comments },
@@ -95,9 +79,7 @@ export const updatePost = async (post: BlogEntry) => {
     const Item = await client.send(
         new UpdateItemCommand({
             TableName: process.env.POST_TABLE,
-            Key: {
-                url: { S: post.url },
-            },
+            Key: marshall({ url: post.url }),
             UpdateExpression: "set description = :d, images = :i, content = :c",
             ExpressionAttributeValues: {
                 ":d": { S: post.description },
@@ -113,48 +95,26 @@ export const deletePost = async (url: string) => {
     await client.send(
         new DeleteItemCommand({
             TableName: process.env.POST_TABLE,
-            Key: {
-                url: { S: url },
-            },
+            Key: marshall({ url: url }),
         })
     );
 };
 
 export const putPost = async (blog: BlogEntry) => {
     const newItem = {
-        id: { S: uuid.v4() },
-        title: {
-            S: blog.title,
-        },
-        content: {
-            S: blog.content,
-        },
-        date: {
-            S: moment().toISOString(),
-        },
-        isDraft: {
-            BOOL: blog?.isDraft || false,
-        },
-        url: {
-            S: blog.url,
-        },
-        images: {
-            S: JSON.stringify(blog.images),
-        },
-        description: {
-            S: blog.description,
-        },
-        comments: {
-            S: "",
-        },
+        ...blog,
+        id: uuid.v4(),
+        date: moment().toISOString(),
+        isDraft: blog?.isDraft || false,
+        images: JSON.stringify(blog.images),
     };
 
-    await imageCreator({ id: newItem.id.S, title: blog.title });
+    await imageCreator({ id: newItem.id, title: blog.title });
 
     await client.send(
         new PutItemCommand({
             TableName: process.env.POST_TABLE || "",
-            Item: newItem,
+            Item: marshall(newItem),
         })
     );
     return newItem;

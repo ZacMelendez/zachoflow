@@ -15,9 +15,8 @@ export default function DraftSelect() {
     const deleteDraft = async (draft: BlogEntry) => {
         try {
             await fetch(
-                process.env.NODE_ENV == "production"
-                    ? `https://crgdo5agb5.execute-api.us-east-1.amazonaws.com/Prod/posts`
-                    : "http://localhost:3001/posts",
+                `/api/posts`,
+                // `https://crgdo5agb5.execute-api.us-east-1.amazonaws.com/Prod/posts`,
                 {
                     method: "DELETE",
                     body: JSON.stringify({

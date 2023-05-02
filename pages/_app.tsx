@@ -11,6 +11,7 @@ import { SessionProvider } from "next-auth/react";
 import { Poppins, Montserrat } from "next/font/google";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Notifications } from "@mantine/notifications";
 
 const poppins = Poppins({
     variable: "--poppins",
@@ -69,6 +70,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     >
                         <RouterTransition />
                         <Component {...pageProps} />
+                        <Notifications />
                     </AppShell>
                 </MantineProvider>
             </PostsContextProvider>

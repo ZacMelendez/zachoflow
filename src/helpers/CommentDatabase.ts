@@ -24,14 +24,11 @@ const itemParser = (object: any) => {
 };
 
 const clientOptions = {
-    region: process.env.NODE_ENV !== "production" ? "localhost" : "us-east-1",
+    region: "us-east-1",
     credentials: {
         accessKeyId: process.env.AWS_KEY || "",
         secretAccessKey: process.env.AWS_SECRET || "",
     },
-    ...(process.env.NODE_ENV !== "production" && {
-        endpoint: "http://localhost:8000",
-    }),
 };
 
 const client = new DynamoDBClient(clientOptions);
