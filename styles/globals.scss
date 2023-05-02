@@ -26,6 +26,9 @@ header {
 
 .mantine-Text-root {
     font-family: var(--poppins);
+    @include sm-max {
+        line-height: 1.85;
+    }
 }
 
 .mantine-Header-root {
