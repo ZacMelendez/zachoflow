@@ -16,13 +16,13 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { duotoneLight as light } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import unwrapImages from "remark-unwrap-images";
-// import { PostMenu } from "../../components";
 import { BlogEntry } from "../../types";
 import styles from "./BlogPost.module.scss";
 import PostsContext from "../../context/PostsContext";
-import { useIntersection } from "@mantine/hooks";
+import { PostMenu } from "../../components";
 
 export default function BlogPost({ blog }: { blog: BlogEntry }) {
+    const { data: session } = useSession();
     const { setTableOfContents } = useContext(PostsContext);
 
     const containerRef = useRef(null);
@@ -38,9 +38,9 @@ export default function BlogPost({ blog }: { blog: BlogEntry }) {
                     <IconArrowLeft size={24} />
                     <Text>back to all posts</Text>
                 </Link>
-                {/* {session?.user?.email === "zacmelendez@gmail.com" && (
+                {session?.user?.email === "zacmelendez@gmail.com" && (
                     <PostMenu blog={blog} />
-                )} */}
+                )}
             </Box>
             <Box className={styles.head}>
                 <Title order={1} className={styles.title}>

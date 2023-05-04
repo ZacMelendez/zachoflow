@@ -1,0 +1,9 @@
+.actions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    * span {
+        color: #c1c2c5 !important;
+    }
+}

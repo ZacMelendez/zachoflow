@@ -10,21 +10,20 @@ export default function PostsPage() {
     const { posts, setPosts } = useContext(PostsContext);
     const [loading, setLoading] = useState<boolean>(true);
 
-    const getAllPosts = async () => {
-        const response = await fetch("/api/posts");
-        const data = ((await response.json()) as BlogEntry[]).filter(
-            (blog) => !blog.isDraft
-        );
-        setPosts(
-            data.sort(
-                (a, b) => moment(b.date).valueOf() - moment(a.date).valueOf()
-            )
-        );
-        setLoading(false);
-    };
-
     useEffect(() => {
-        getAllPosts();
+        (async () => {
+            const response = await fetch("/api/posts");
+            const data = ((await response.json()) as BlogEntry[]).filter(
+                (blog) => !blog.isDraft
+            );
+            setPosts(
+                data.sort(
+                    (a, b) =>
+                        moment(b.date).valueOf() - moment(a.date).valueOf()
+                )
+            );
+            setLoading(false);
+        })();
     }, []);
 
     return (

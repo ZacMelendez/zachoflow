@@ -1,7 +1,7 @@
 import { NextSeo } from "next-seo";
 import { useEffect } from "react";
 import { BlogPost } from "../../src/containers";
-import { getPost } from "../../src/helpers/PostsDatabase";
+import { getPost, getPosts } from "../../src/helpers/PostsDatabase";
 import { BlogEntry } from "../../src/types";
 import styles from "../../styles/Home.module.scss";
 import { Box } from "@mantine/core";
