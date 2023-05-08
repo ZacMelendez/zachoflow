@@ -8,9 +8,10 @@ import { MobileHeader, PostItem, PostItemLoader } from "../../src/components";
 
 export default function PostsPage() {
     const { posts, setPosts } = useContext(PostsContext);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(posts.length === 0);
 
     useEffect(() => {
+        if (posts.length > 0) return;
         (async () => {
             const response = await fetch("/api/posts");
             const data = ((await response.json()) as BlogEntry[]).filter(

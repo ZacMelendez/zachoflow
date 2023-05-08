@@ -1,13 +1,34 @@
 import { NextSeo } from "next-seo";
-import React from "react";
-// import { Header } from "../src/components";
-// import { About } from "../src/containers/";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "../styles/Home.module.scss";
 import { Box, Title, Text } from "@mantine/core";
 import Image from "next/image";
 import { MobileHeader } from "../src/components";
+import PostsContext from "../src/context/PostsContext";
+import { BlogEntry } from "../src/types";
+import moment from "moment";
 
 export default function Home() {
+    const { posts, setPosts } = useContext(PostsContext);
+    const [, setLoading] = useState<boolean>(posts.length === 0);
+
+    useEffect(() => {
+        if (posts.length > 0) return;
+        (async () => {
+            const response = await fetch("/api/posts");
+            const data = ((await response.json()) as BlogEntry[]).filter(
+                (blog) => !blog.isDraft
+            );
+            setPosts(
+                data.sort(
+                    (a, b) =>
+                        moment(b.date).valueOf() - moment(a.date).valueOf()
+                )
+            );
+            setLoading(false);
+        })();
+    }, []);
+
     return (
         <>
             <MobileHeader />
