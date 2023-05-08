@@ -11,7 +11,7 @@ export default function PostsPage() {
     const [loading, setLoading] = useState<boolean>(posts.length === 0);
 
     useEffect(() => {
-        if (posts.length > 0) return;
+        if (posts.length > 0) return setLoading(false);
         (async () => {
             const response = await fetch("/api/posts");
             const data = ((await response.json()) as BlogEntry[]).filter(
